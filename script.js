@@ -1,5 +1,6 @@
 //your JS code here. If required.
-function getArray() {
+// Function to return a promise that resolves with an array after 3 seconds
+function getNumbers() {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve([1, 2, 3, 4]);
@@ -7,28 +8,30 @@ function getArray() {
     });
 }
 
-function filterEvenNumbers(array) {
+// Function to filter out odd numbers
+function filterOddNumbers(numbers) {
     return new Promise((resolve) => {
         setTimeout(() => {
-            const evenNumbers = array.filter(num => num % 2 === 0);
-            document.getElementById('output').textContent = evenNumbers.join(', ');
+            const evenNumbers = numbers.filter(number => number % 2 === 0);
+            document.getElementById("output").innerText = evenNumbers.join(",");
             resolve(evenNumbers);
         }, 1000);
     });
 }
 
-function multiplyByTwo(array) {
+// Function to multiply even numbers by 2
+function multiplyEvenNumbers(numbers) {
     return new Promise((resolve) => {
         setTimeout(() => {
-            const multipliedNumbers = array.map(num => num * 2);
-            document.getElementById('output').textContent = multipliedNumbers.join(', ');
+            const multipliedNumbers = numbers.map(number => number * 2);
+            document.getElementById("output").innerText = multipliedNumbers.join(",");
             resolve(multipliedNumbers);
         }, 2000);
     });
 }
 
-getArray()
-    .then(filterEvenNumbers)
-    .then(multiplyByTwo)
-    .catch(error => console.error(error));
-
+// Chaining the promises
+getNumbers()
+    .then(filterOddNumbers)
+    .then(multiplyEvenNumbers)
+    .catch(error => console.error("Error:", error));
